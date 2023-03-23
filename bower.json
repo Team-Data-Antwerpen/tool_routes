@@ -1,0 +1,17 @@
+{
+  "name": "afvalroutes",
+  "description": "online tool to plan garbage collections routes",
+  "main": "index.html",
+  "authors": [
+    "Kay Warrie"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "tink-core": "^1.12.4",
+    "simple-excel-js": "git://github.com/faisalman/simple-excel-js.git#^0.1.3",
+    "tink-navigation-angular": "^2.0.1",
+    "tink-theme-stad": "^1.12.1",
+    "tink-sort-table-angular": "^2.0.6"
+  }
+}

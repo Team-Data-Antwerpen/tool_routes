@@ -1,0 +1,16 @@
+{
+  "name": "tool_routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bower-concat": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kay warrie",
+  "license": "ISC"
+}

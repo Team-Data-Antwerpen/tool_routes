@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"  >
+  <head>
+    <link rel="stylesheet" href="//openlayers.org/en/v3.17.1/css/ol.css" type="text/css">
+	<link rel="stylesheet" href="css/_bower.css" type="text/css">	
+	<link href="//cdn.jsdelivr.net/openlayers.geocoder/latest/ol3-geocoder.min.css" rel="stylesheet">
+    <style>
+      .main {
+	    margin-top: 55px;
+        height: -moz-calc(100% - 60px);
+        height: calc(100% - 60px);
+      }
+	  
+	  #map { 
+		height: 100% 
+	  }
+	  #selTbl {
+		width: 100%;
+	  }
+      #sideNavLeft {
+        overflow-y: auto;
+		width: 250px;
+		font-size: 70%;
+      }
+    </style>
+    <script src="//openlayers.org/en/v3.17.1/build/ol.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/openlayers.geocoder/latest/ol3-geocoder.js"></script>
+	<script src="js/_bower.js" type="text/javascript"></script>
+	
+	<script src="js/app.js" type="text/javascript"></script>
+    <script src="js/download.js" type="text/javascript"></script>
+
+    <title>Afvalroutes</title>
+  </head>
+  <body ng-app="SBrouteApp" ng-controller="SBrouteController" >
+    <!--Navbar on top-->
+	<nav data-tink-top-nav="" class="nav-top">
+	   <ul class="nav-top-branding">
+			<li class="nav-top-logo">
+			  <a href="#/" title=""></a>
+			</li>
+			<li class="nav-top-toggle" data-tink-sidenav-collapse="sideNavLeft" onclick="sideNav.toggleMenu()" >
+			    <i class="fa fa-bars"></i>
+			</li>
+			<li class="nav-top-app">
+			  <h1><a href="#/" title="">{{name}} </a></h1>
+			</li>
+		</ul>
+	   <ul class="nav-top-center">
+       <li>
+	   
+	   	<form class="form-force-inline">
+	   	   <button id="downloadBtn" onclick="dlCsv()" title="Download Tabel" >
+					<span class="fa fa-table"></span></button> 
+					
+		   <a id="export-png" class="btn btn-default" download="map.png" title="Download Kaart" >
+					<span class="fa fa-file-image-o"></span></a>  
+	   
+           <div class="select" >
+            <select id="typeSelect" title="Actieve tool" >
+			   <option value="None">Kaart verslepen</option>
+			   <option value="Box">Selecteren </option>
+			</select>
+           </div>
+		</form>
+       </li>
+    </ul>
+	</nav>
+	<!--/Navbar on top-->
+
+	<!--Sidebar to left-->
+	<aside style="" 
+		data-tink-nav-aside="" data-tink-accordion="true" data-tink-toggle-id="sideNavLeft"
+		class="nav-aside nav-left" id="sideNavLeft" >
+		<div class="nav-aside-section">
+		 
+		<ul class="nav-aside-list" role="sidenav">
+			<li>
+			  <button id="clearBtn" ng-click="removeAll()" >
+					<span class="fa fa-remove"></span>Voledige Selectie Wissen</button>
+			  <div id="tblDiv" >
+				<table id="selTbl" >  
+				<thead>
+				  <tr>
+					<th></th>
+					<th> <span ng-click="sortfield = 'id'" > ID 
+						 <span class="fa fa-sort-amount-asc" ng-hide="sortfield != 'id'"></span> </span>
+					</th>
+					<th> <span ng-click="sortfield = 'name'" >Naam 
+						 <span class="fa fa-sort-amount-asc" ng-hide="sortfield != 'name'"></span> </span>
+					</th>
+				  </tr>
+				</thead>
+					<tbody id="info">
+					    <tr ng-repeat="row in table | orderBy : sortfield ">
+						  <td><span class="fa fa-remove"
+							        ng-click="selectRemove(row.idx);" > </td>
+						  <td>{{row.id }}</td>
+						  <td>{{row.name}}</td>
+						</tr>
+					</tbody>
+				</table>
+			  </div >
+			  
+			</li>
+		</ul>
+
+		</div>
+	</aside>
+	<!--/Sidebar to left-->
+		
+	<!--Central window-->
+	  <div class="main" role="main" data-autoscroll="true">
+		  <div id="map"></div>
+	  </div>  
+	<!--/Central window-->
+	
+	<iframe id="txtArea1" style="display:none"></iframe>
+    <script type="text/javascript" src="js/main.js" > </script>
+  </body>
+</html>
